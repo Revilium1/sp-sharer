@@ -1,16 +1,4 @@
-There are a few issues that will cause bugs, sync loops, launchd problems, or path problems on macOS. The biggest ones:
 
-* Your path casing is inconsistent (`/Users/shared/...` vs actual macOS `/Users/Shared/...`)
-* You said the filesystem/path is case-sensitive and specifically want `/Users/shared/secret`, but on normal macOS installs `/Users/shared` usually does not exist. If you truly created it manually, fine — otherwise this will fail.
-* `watchdog` can fire events before a file is fully written
-* deleting directories is not handled
-* peer rebroadcast loops can still happen
-* server shutdown cleanup is incomplete
-* launchd plist is missing important settings
-* recursive self-sync storms can happen from metadata updates
-* websocket reconnecting every single file event is inefficient
-
-Below is a cleaned-up/fixed version that should behave much more reliably.
 
 ---
 
